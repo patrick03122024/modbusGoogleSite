@@ -1,0 +1,53 @@
+<!-- programa rodando no google sites -->
+<!-- https://sites.google.com/senaimgdocente.com.br/modbus/in%C3%ADcio?authuser=1 -->
+<!-- feito no login 09106128@senaimgdocente.com.br -->
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modbus</title>
+    <style>
+        body{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #l1{
+            width:200px;
+            height:50px;
+            font-size:22px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 30px;
+        }
+    </style>
+</head>
+<body>
+    
+    <section>
+        <button id="l1">Lâmpada 01</button>
+    </section>
+
+    <script>
+        var l1 = 0;
+        document.getElementById("l1").addEventListener("mousedown", function(){
+            l1 ^= 1;
+            fetch('https://d787c086-cd17-47da-b464-e6c88790489d-00-pxl0z27931jl.spock.replit.dev:3000/',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "l1": l1
+                })
+            })
+        })
+    </script>
+</body>
+</html>
